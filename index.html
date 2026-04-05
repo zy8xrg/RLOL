@@ -22,7 +22,6 @@
 
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-    /* ===== GRID: ultra visible, raw, bright violet lines, no glow ===== */
     .grid-wire {
       position: fixed;
       top: 0;
@@ -37,7 +36,6 @@
       opacity: 0.95;
     }
 
-    /* subtle dark veil — keeps text readable but grid stays aggressive */
     .dark-veil {
       position: fixed;
       top: 0;
@@ -49,7 +47,6 @@
       z-index: 1;
     }
 
-    /* main container */
     .main-container {
       position: relative;
       z-index: 15;
@@ -58,7 +55,6 @@
       padding: 2rem 1.5rem 4rem;
     }
 
-    /* header */
     .clan-header {
       text-align: center;
       margin: 2rem 0 1rem;
@@ -90,7 +86,6 @@
       letter-spacing: -0.2px;
     }
 
-    /* cards — dark solid, minimal glass */
     .info-card {
       background: rgba(8, 3, 18, 0.9);
       border: 1px solid #2e1c4a;
@@ -148,7 +143,6 @@
       font-size: 1rem;
     }
 
-    /* discord button */
     .discord-btn {
       background: #21163b;
       border: 1.8px solid #b370ff;
@@ -191,7 +185,6 @@
       letter-spacing: 0.2px;
     }
 
-    /* ===== CURSOR: strong pointer-like, sharper + brighter glow ===== */
     .custom-pointer {
       position: fixed;
       width: 28px;
@@ -209,7 +202,7 @@
       display: block;
     }
 
-    /* BRIGHTER + STRONGER GLOW — much more intense */
+
     .cursor-glow-bright {
       position: fixed;
       width: 380px;
@@ -224,7 +217,7 @@
       transition: opacity 0.1s;
     }
 
-    /* remove all emojis, no scrims text, no comments style */
+
     @media (max-width: 680px) {
       .clan-name { font-size: 3.2rem; }
       .main-container { padding: 1rem 1.2rem 3rem; }
@@ -246,11 +239,9 @@
 </head>
 <body>
 
-<!-- GRID LAYER: fully visible, sharp lines, no glow interference -->
 <div class="grid-wire"></div>
 <div class="dark-veil"></div>
 
-<!-- CURSOR: brighter glow + custom pointer -->
 <div class="cursor-glow-bright" id="brightGlow"></div>
 <div class="custom-pointer" id="customPointer">
   <svg class="cursor-svg-main" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -306,7 +297,6 @@
 
 <script>
   (function() {
-    // Get elements
     const brightGlow = document.getElementById('brightGlow');
     const customCursor = document.getElementById('customPointer');
     const joinBtn = document.getElementById('discordRedirectBtn');
@@ -340,7 +330,6 @@
       scheduleUpdate();
     });
 
-    // hide initial offscreen
     if (brightGlow) {
       brightGlow.style.left = '-400px';
       brightGlow.style.top = '-400px';
@@ -350,7 +339,6 @@
       customCursor.style.top = '-400px';
     }
 
-    // Discord redirect (no extra text, no alerts)
     if (joinBtn) {
       joinBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -358,7 +346,6 @@
       });
     }
 
-    // click effect on cursor (more responsive)
     window.addEventListener('mousedown', () => {
       if (customCursor) {
         customCursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
@@ -380,19 +367,16 @@
       }
     });
 
-    // make sure all interactive have cursor: none
     const allClick = document.querySelectorAll('button, .discord-btn, a');
     allClick.forEach(el => {
       el.style.cursor = 'none';
     });
 
-    // remove context menu default cursor flash
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
       return false;
     });
 
-    // EXTRA: BRIGHTER GLOW — already defined in CSS, but let's add more intense pulse on hover for button (makes glow stronger)
     if (joinBtn) {
       joinBtn.addEventListener('mouseenter', () => {
         if (brightGlow) {
@@ -408,16 +392,6 @@
       });
     }
 
-    // enforce NO SCRIMS, NO COMMENTS anywhere: removed any mention of scrims, faceit, community servers.
-    // also no "comments" like dm or anything. cleaned.
-    // hours fixed: 7-6 hours per week.
-    // removed any extra brackets or etc.
-    // no emojis in the whole page.
-    // cursor glow is now much stronger and brighter (larger radius, higher opacity, intense colors)
-    // grid visibility max without glow interference (grid lines opacity 0.95, no blur)
-    // double-check description: "Casual and competitive mix — matchmaking and ranked games" no scrims.
-    
-    // Make the grid even more punchy with a secondary enhancement:
     const extraGridStyle = document.createElement('style');
     extraGridStyle.textContent = `
       .grid-wire {
@@ -436,8 +410,6 @@
     `;
     document.head.appendChild(extraGridStyle);
     
-    // final polish: no additional comments, no console log that looks ai-ish
-    // cursor feels like a real crosshair pointer.
   })();
 </script>
 </body>
